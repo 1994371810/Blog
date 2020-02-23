@@ -1,8 +1,8 @@
 ﻿# Header-菜单
 menu:
   主页: /
-  技术笔记: https://zhousiwei.gitee.io/ibooks/
-  随笔: /tags/随笔/
+  #技术笔记: https://zhousiwei.gitee.io/ibooks/
+  #随笔: /tags/随笔/
 
 # subNav-子导航
 subNav:
@@ -14,14 +14,14 @@ subNav:
   #csdn: "#"
   #rss: "#"
   #zhihu: "#"
-  qq: "img/qq.jpg"
+  qq: "http://wpa.qq.com/msgrd?v=3&uin=1994371810&site=qq&menu=yes"
   weixin: "img/vx.png"
   #weibo: "#"
   #douban: "#"
   #segmentfault: "#"
   #bilibili: "#"
   #acfun: "#"
-  mail: "1994371810@qq.com"
+  mail: "http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=soOLi4aBhYOKg4Lyw8Oc0d3f"
   #facebook: "#"
   #google: "#"
   #twitter: "#"
@@ -143,10 +143,10 @@ music:
   enable: true
   # 播放器尺寸类型(1：长尺寸、2：短尺寸)
   type: 2
-  id: 4878444230  # 网易云分享的音乐ID(更换音乐请更改此配置项)
+  id: 480353  # 网易云分享的音乐ID(更换音乐请更改此配置项)
   autoPlay: true  # 是否开启自动播放
   # 提示文本(关闭请设置为false)
-  text: 'false
+  text: false
 
 # 页面点击小红心
 clickLove:
@@ -170,7 +170,7 @@ baidu_push: false
 # 版权声明type设定：0-关闭版权声明； 1-文章对应的md文件里有copyright: true属性，才有版权声明； 2-所有文章均有版权声明
 copyright_type: 2
 # 版权声明自定义文本(关闭请设置为false)
-copyright_text: 
+copyright_text: false
 
 # 网站成立年份(默认为 2018，若填入年份小于当前年份，则显示为 2018-2019 类似的格式)
 since: 2020
@@ -283,3 +283,23 @@ friends:
 
 # 关于我
 aboutme: 主要涉及技术：<br>Java后端开发、聚合支付、<br>公众号开发、开源爱好者、Linux<br><br>联系QQ:1994371810<br><br>很惭愧<br><br>只做了一点微小的工作<br>谢谢大家
+
+
+jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
