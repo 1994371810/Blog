@@ -6,22 +6,22 @@ menu:
 
 # subNav-子导航
 subNav:
-  github: "#"
-  gitee: "#" # 码云
-  jianshu: "#" #简书
-  cnblog: "#"
+  github: "https://github.com/1994371810"
+  #gitee: "#" # 码云
+  #jianshu: "#" #简书
+  #cnblog: "#"
   #blog: "#"
   #csdn: "#"
   #rss: "#"
   #zhihu: "#"
-  #qq: "img/2434387555.jpg"
-  #weixin: "img/weixin_.png"
+  qq: "img/qq.jpg"
+  weixin: "img/vx.png"
   #weibo: "#"
   #douban: "#"
   #segmentfault: "#"
   #bilibili: "#"
   #acfun: "#"
-  #mail: "mailto:zhousiwei0911@qq.com"
+  mail: "1994371810@qq.com"
   #facebook: "#"
   #google: "#"
   #twitter: "#"
@@ -143,10 +143,10 @@ music:
   enable: true
   # 播放器尺寸类型(1：长尺寸、2：短尺寸)
   type: 2
-  id: 28188171  # 网易云分享的音乐ID(更换音乐请更改此配置项)
+  id: 4878444230  # 网易云分享的音乐ID(更换音乐请更改此配置项)
   autoPlay: true  # 是否开启自动播放
   # 提示文本(关闭请设置为false)
-  text: 'look at me now！'
+  text: 'false
 
 # 页面点击小红心
 clickLove:
@@ -222,7 +222,7 @@ live2d:
   # (关闭请设置为false)
   enable: true
   # 模型名称(取值请参考：https://github.com/JoeyBling/hexo-theme-yilia-plus/wiki/live2d%E6%A8%A1%E5%9E%8B%E5%8C%85%E5%B1%95%E7%A4%BA)
-  model: hibiki
+  model: shizuku
   display:
     position: right # 显示位置：left/right(default: 'right')
     width: 145  # 模型的长度(default: 150)
@@ -230,7 +230,7 @@ live2d:
     hOffset: 50 # 水平偏移(default: 0)
     #vOffset: -20 # 垂直偏移(default: -20)
   mobile:
-    show: false # 是否在移动设备上显示(default: true)
+    show: true # 是否在移动设备上显示(default: true)
     scale: 0.6 # 移动设备上的缩放(default: 0.5)
   react:
     opacity: 0.8 # 模型透明度(default: 0.7)
@@ -242,7 +242,7 @@ style:
   header: '#4d4d4d'
   gif:
     # 是否启用左侧边栏动态图效果
-    enable: true
+    enable: false
     # 自定义背景图路径(默认可以不设置，提供默认背景图)
     path: /img/biubiubiu.gif
   # 右滑板块背景
@@ -260,7 +260,7 @@ slider:
 #  friends: false
 smart_menu:
   innerArchive: '所有文章'
-  friends: '友链'
+  #friends: '友链'
   aboutme: '关于我'
 
 # 友情链接
@@ -271,7 +271,7 @@ friends:
     #网站图片(可忽略不写)
     img: https://zhousiwei.gitee.io/ibooks/favicon.ico
     #网站简介(可忽略不写)
-    description: 记录工作和学习过程中的笔记：Java、前端开发、Hexo博客、聚合支付、Linux笔记、ElasticSearch、ELK日志分析
+    description: 记录工作和学习过程中的笔记：Java、前端开发、聚合支付、Linux笔记、数据库、
   GitHub:
     url: https://github.com/JoeyBling
   码云:
