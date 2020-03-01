@@ -77,6 +77,8 @@
 			
 				<li><a href="/Blog/categories/java/" target="_blank">java</a></li>
 			
+				<li><a href="/Blog/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" target="_blank">数据库</a></li>
+			
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -148,6 +150,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -165,12 +169,14 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/Blog/">主页</a></li>
+					<li style="width: 33.333333333333336%"><a href="/Blog/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/Blog/categories/java/">java</a></li>
+					<li style="width: 33.333333333333336%"><a href="/Blog/categories/java/">java</a></li>
+		        
+					<li style="width: 33.333333333333336%"><a href="/Blog/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li>
 		        
 				</ul>
 			</nav>
@@ -187,6 +193,401 @@
           </div>
           <div id="js-content" class="content-ll">
             
+
+  
+    <article id="post-MySQL执行计划" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/Blog/2020/03/01/MySQL%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92/" target="_blank">MySQL执行计划</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/Blog/2020/03/01/MySQL%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92/" class="archive-article-date">
+        <time datetime="2020-03-01T19:26:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-01</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>MySQL 可以通过 explain  查看<strong>查询语句</strong>的执行计划 有助于我们优化SQL 如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">explain select * from table1</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="执行计划中的ID"><a href="#执行计划中的ID" class="headerlink" title="执行计划中的ID"></a>执行计划中的ID</h1><p>id可以表示SQL语句的执行顺序 id越大越先执行 如果数字一样打就按照顺序执行</p>
+<h1 id="执行计划中的select-type"><a href="#执行计划中的select-type" class="headerlink" title="执行计划中的select_type"></a>执行计划中的select_type</h1><p>select_type有多个值 用于表示查询语句的类型  常见的有</p>
+<ul>
+<li><strong>simpl</strong>:         不包含子查询和union的查询称为 simpl 如果有连接查询时最外层的查为simpl查询</li>
+<li><strong>primary</strong>:    存在子查询时最外层的查询为 primary  类型</li>
+<li><strong>subquery</strong>: 存在子查询时最外层的查询为 subquery 类型</li>
+<li><strong>derived</strong>:     存在union询时 union 第一个查询语句 类型为 drived 类型</li>
+<li><strong>union</strong>:         存在union时 除第一个查询语句外的其他语句 为 union 类型</li>
+<li><strong>union result</strong>:  union查询后的结果为  union result 类型</li>
+</ul>
+<h1 id="执行计划中的type"><a href="#执行计划中的type" class="headerlink" title="执行计划中的type"></a>执行计划中的type</h1><p>执行计划中的type为索引类型  常见的类型有：</p>
+<ul>
+<li><strong>system</strong>: 表中只有一条数据时 且表引擎为 myiSam或memory时通过索引查询 如果是Innodb引擎表 不会出现 system是 const 的特殊情况</li>
+<li><strong>const</strong>: 通过主键或唯一索引 <strong>等值where</strong> 查询出一条数据  type是const </li>
+<li><strong>eq_ref</strong>:  唯一性索引扫描，对于每个索引键，表中只有一条记录与之匹配。常见于主键 或 唯一索引扫描</li>
+<li><strong>ref</strong>:    非唯一性索引扫描，通过索引查询出一个或多个值</li>
+<li><strong>range</strong>: 索引范围查询  常见于使用  &gt; , &lt;  is null , in, like 等查询语句  </li>
+<li><strong>index</strong>: 索引全表扫描，把索引从头到尾扫一遍，常见于 只查询索引字段的查询</li>
+<li><strong>all</strong>：就是全表扫描数据文件，然后再在server层进行过滤返回符合要求的记录。</li>
+</ul>
+<p><strong>效率从高到低： system &gt; const &gt; eq_ref &gt; ref &gt; range &gt; index &gt; all</strong></p>
+<h1 id="执行计划中的key-len"><a href="#执行计划中的key-len" class="headerlink" title="执行计划中的key_len"></a>执行计划中的key_len</h1><p>表示索引中使用的字节数，可通过该列计算查询中使用的索引的长度（key_len显示的值为索引字段的最大可能长度，并非实际使用长度，即key_len是根据表定义计算而得，不是通过表内检索出的）</p>
+<h1 id="执行计划中的ref"><a href="#执行计划中的ref" class="headerlink" title="执行计划中的ref"></a>执行计划中的ref</h1><p>查询语句中如果where后使用的是常量 则会显示为const 如果是连接查询 会显示 引用的表的字段名 如果是表达式或函数 显示为func</p>
+<h1 id="执行计划中的rows"><a href="#执行计划中的rows" class="headerlink" title="执行计划中的rows"></a>执行计划中的rows</h1><p>表示MySQL根据表统计信息及索引选用情况，估算的找到所需的记录所需要读取的行数。</p>
+<h1 id="执行计划中的Extra"><a href="#执行计划中的Extra" class="headerlink" title="执行计划中的Extra"></a>执行计划中的Extra</h1><p>Extra 表示额外的描述 常见的有：</p>
+<ul>
+<li>using index :  查询时不需要回原表内获取数据 直接通过索引就可获取到查询数据 常出现于只查询索引字段</li>
+<li>using where : 查询时要回原表内获取数据 如 select name,age from tb where name=’zs’(name为索引段)这时age不是索引要回原表获取数据 会显示为 using where  并不是用到where条件的查询语句都显示 using where</li>
+<li>Using filesort： 使用到零时表时，如果出现using filesort 则消耗的性能较大 常见于 通过非索引字段 排序或分组</li>
+<li>impossible where： 表示where语句的条件永远不成立 如 select * from tb were name=’a’ and name=’b’</li>
+<li>Using join buffer: 该值强调了在获取连接条件时没有使用索引，并且需要连接缓冲区来存储中间结果</li>
+</ul>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/Blog/categories/数据库//" class="article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/Blog/2020/03/01/MySQL%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-MySQL索引" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/Blog/2020/03/01/MySQL%E7%B4%A2%E5%BC%95/" target="_blank">MySQL索引</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/Blog/2020/03/01/MySQL%E7%B4%A2%E5%BC%95/" class="archive-article-date">
+        <time datetime="2020-03-01T19:26:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-01</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="一-什么是索引？为什么要建立索引？"><a href="#一-什么是索引？为什么要建立索引？" class="headerlink" title="一 什么是索引？为什么要建立索引？"></a>一 什么是索引？为什么要建立索引？</h2><p>索引用于快速找出某个列中有特定值的行，如果不使用索引 再查询时 MySQL 或对表内的所有数据进行遍历和筛选,表越大 查询数据所花费的时间也越大，如果表中查询的列有一个索引，MySQL能够快速到达一个位置去搜索数据文件，而不必查看所有数据，那么将会节省很大一部分时间。</p>
+<p>索引就好像是书的目录，可以直接通过索引查找到我们想要的数据</p>
+<h1 id="二-索引的利弊"><a href="#二-索引的利弊" class="headerlink" title="二 索引的利弊"></a>二 索引的利弊</h1><p><strong>好处</strong>： </p>
+<ul>
+<li>通过索引 可以提高查询速度</li>
+<li>索引可以提高 排序的速度</li>
+</ul>
+<p><strong>坏处:</strong></p>
+<ul>
+<li><p>索引也是数据结构，需要耗费磁盘空间</p>
+</li>
+<li><p>索引需要维护 虽然提高了查询效率  但是当对表中的数据进行增加、删除、修改时，索引也需要动态的维护，降低了数据的维护速度</p>
+</li>
+</ul>
+<p>通过上面说的优点和缺点，我们应该可以知道，并不是每个字段度设置索引就好，也不是索引越多越好，而是需要自己合理的使用。</p>
+<ul>
+<li>对经常更新的表 不适合建立索引，对经常用于条件查询的字段应该创建索引</li>
+<li>数据量小的表最好不要使用索引，因为由于数据较少，可能查询全部数据花费的时间比遍历索引的时间还要短，索引就可能不会产生优化效果。</li>
+<li>存在大量重复数据的列上不要建立索引，比如在学生表的”性别”字段上只有男，女两个不同值。相反的，在一个字段上不同值较多可以建立索引。</li>
+</ul>
+<h1 id="三、索引的分类"><a href="#三、索引的分类" class="headerlink" title="三、索引的分类"></a>三、索引的分类</h1><p>MySQL中索引有两种实现 <strong>BTree索引</strong>和 <strong>Hash索引</strong>   MyISAM和InnoDB存储引擎：只支持BTREE索引，MEMORY/HEAP存储引擎：支持HASH和BTREE索引</p>
+<p>索引分为 :  普通索引，复合索引(多列)， 主键索引 ，唯一索引，全文索引</p>
+<h2 id="普通索引"><a href="#普通索引" class="headerlink" title="普通索引"></a>普通索引</h2><p>这是最基本的索引，它没有任何限制。它有以下几种创建方式：</p>
+<p>（1）直接创建索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE INDEX index_name ON table(column(length))</span><br></pre></td></tr></table></figure>
+
+<p>（2）修改表结构的方式添加索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE table_name ADD INDEX index_name ON (column(length))</span><br></pre></td></tr></table></figure>
+
+<p>（3）创建表的时候同时创建索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE &#96;table&#96; (</span><br><span class="line">    &#96;id&#96; int(11) NOT NULL AUTO_INCREMENT ,</span><br><span class="line">    &#96;title&#96; char(255) CHARACTER NOT NULL ,</span><br><span class="line">    &#96;content&#96; text CHARACTER NULL ,</span><br><span class="line">    &#96;time&#96; int(10) NULL DEFAULT NULL ,</span><br><span class="line">    PRIMARY KEY (&#96;id&#96;),</span><br><span class="line">    INDEX index_name (title(length))</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h2 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h2><p>与前面的普通索引类似，不同的就是：索引列的值必须唯一，但允许有空值。如果是组合索引，则列值的组合必须唯一。它有以下几种创建方式：</p>
+<p>（1）创建唯一索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE UNIQUE INDEX indexName ON table(column(length))</span><br></pre></td></tr></table></figure>
+
+<p>（2）修改表结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE table_name ADD UNIQUE indexName ON (column(length))</span><br></pre></td></tr></table></figure>
+
+<p>（3）创建表的时候直接指定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE &#96;table&#96; (</span><br><span class="line">    &#96;id&#96; int(11) NOT NULL AUTO_INCREMENT ,</span><br><span class="line">    &#96;title&#96; char(255) CHARACTER NOT NULL ,</span><br><span class="line">    &#96;content&#96; text CHARACTER NULL ,</span><br><span class="line">    &#96;time&#96; int(10) NULL DEFAULT NULL ,</span><br><span class="line">    UNIQUE indexName (title(length))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="主键索引"><a href="#主键索引" class="headerlink" title="主键索引"></a>主键索引</h2><p>是一种特殊的唯一索引，一个表只能有一个主键，不允许有空值。一般是在建表的时候同时创建主键索引：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE &#96;table&#96; (</span><br><span class="line">    &#96;id&#96; int(11) NOT NULL AUTO_INCREMENT ,</span><br><span class="line">    &#96;title&#96; char(255) NOT NULL ,</span><br><span class="line">    PRIMARY KEY (&#96;id&#96;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>　通过 alter语句创建</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table &#96;table&#96; add primary key(id)</span><br></pre></td></tr></table></figure>
+
+<h2 id="复合索引"><a href="#复合索引" class="headerlink" title="复合索引"></a>复合索引</h2><p>指多个字段上创建的索引，只有在查询条件中使用了创建索引时的第一个字段，索引才会被使用。使用组合索引时遵循最左前缀集合</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE &#96;table&#96; ADD INDEX name_city_age (name,city,age);</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="全文索引"><a href="#全文索引" class="headerlink" title="全文索引"></a>全文索引</h2><p>主要用来查找文本中的关键字，而不是直接与索引中的值相比较。fulltext索引跟其它索引大不相同，它更像是一个搜索引擎，而不是简单的where语句的参数匹配。fulltext索引配合match against操作使用，而不是一般的where语句加like。它可以在create table，alter table ，create index使用，不过目前只有char、varchar，text 列上可以创建全文索引。值得一提的是，在数据量较大时候，现将数据放入一个没有全局索引的表中，然后再用CREATE index创建fulltext索引，要比先为一张表建立fulltext然后再将数据写入的速度快很多。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE &#96;table&#96; (</span><br><span class="line">    &#96;id&#96; int(11) NOT NULL AUTO_INCREMENT ,</span><br><span class="line">    &#96;title&#96; char(255) CHARACTER NOT NULL ,</span><br><span class="line">    &#96;content&#96; text CHARACTER NULL ,</span><br><span class="line">    &#96;time&#96; int(10) NULL DEFAULT NULL ,</span><br><span class="line">    PRIMARY KEY (&#96;id&#96;),</span><br><span class="line">    FULLTEXT (content)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="四-避免索引失效"><a href="#四-避免索引失效" class="headerlink" title="四 避免索引失效"></a>四 避免索引失效</h1><p>如果操作不当会使索引失效</p>
+<ol>
+<li><p>使用复合索引时 应按索引的顺序查询 如 复合索引 idx(name,age,addr) 在查询时应先按照name查询再按照age查询然后按照addr查询 如果不按照顺序会时符合索引失效(并不是全部失效)、</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select * from tb where name &#x3D; &#39;zs&#39; and age &#x3D; 13 and addr &#x3D; &#39;北京&#39; -- 复合索引全部用到</span><br><span class="line">select * from tb where name &#x3D; &#39;zs&#39; and addr &#x3D; &#39;北京&#39; and age &#x3D; 13 -- 只使用到了name</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p>不能对索引进行任何操作(计算，函数，手动或自动类型转换)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select * from tb where age+1 &#x3D; 10  		-- 索引失效</span><br><span class="line">select * from tb where name &#x3D; 1  		-- name为varchar类型时索引失效</span><br><span class="line">select * from tb where trim(name) &#x3D;&#39;a&#39;	-- 索引失效</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="3">
+<li><p>进行 != ,&lt;&gt;, like ‘%xx’, is null , is not null ,or 时索引会失效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select * from tb where id !&#x3D;1   			-- 索引失效</span><br><span class="line">select * from tb where id &lt;&gt; 1				-- 索引失效</span><br><span class="line">select * from tb where name like &#39;%aa&#39;		-- 索引失效 like前面使用%</span><br><span class="line">select * from tb where id is null			-- 索引失效</span><br><span class="line">select * from tb where id &#x3D; 1 or name &#x3D; &#39;zs&#39;-- 索引失效</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+</ol>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/Blog/categories/数据库//" class="article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/Blog/2020/03/01/MySQL%E7%B4%A2%E5%BC%95/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/Blog/2020/03/01/hello-world/" target="_blank">Hello World</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/Blog/2020/03/01/hello-world/" class="archive-article-date">
+        <time datetime="2020-03-01T13:49:19.538Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-01</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/Blog/2020/03/01/hello-world/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
 
   
     <article id="post-HashMap的实现原理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
@@ -290,93 +691,6 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/Blog/2020/02/26/HashMap%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/Blog/2020/02/26/hello-world/" target="_blank">Hello World</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/Blog/2020/02/26/hello-world/" class="archive-article-date">
-        <time datetime="2020-02-26T02:14:39.505Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-26</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/Blog/2020/02/26/hello-world/">展开全文 >></a>
     </p>
     
 

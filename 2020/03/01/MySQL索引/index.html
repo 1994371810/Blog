@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://1994371810.github.io">
-  <title>Archives: 2020 | 郭俊旺的个人博客</title>
+  <title>MySQL索引 | 郭俊旺的个人博客</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="郭俊旺的个人博客">
-<meta property="og:url" content="https://1994371810.github.io/archives/2020/index.html">
+  <meta name="description" content="一 什么是索引？为什么要建立索引？索引用于快速找出某个列中有特定值的行，如果不使用索引 再查询时 MySQL 或对表内的所有数据进行遍历和筛选,表越大 查询数据所花费的时间也越大，如果表中查询的列有一个索引，MySQL能够快速到达一个位置去搜索数据文件，而不必查看所有数据，那么将会节省很大一部分时间。 索引就好像是书的目录，可以直接通过索引查找到我们想要的数据 二 索引的利弊好处：   通过索引">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL索引">
+<meta property="og:url" content="https://1994371810.github.io/2020/03/01/MySQL%E7%B4%A2%E5%BC%95/index.html">
 <meta property="og:site_name" content="郭俊旺的个人博客">
+<meta property="og:description" content="一 什么是索引？为什么要建立索引？索引用于快速找出某个列中有特定值的行，如果不使用索引 再查询时 MySQL 或对表内的所有数据进行遍历和筛选,表越大 查询数据所花费的时间也越大，如果表中查询的列有一个索引，MySQL能够快速到达一个位置去搜索数据文件，而不必查看所有数据，那么将会节省很大一部分时间。 索引就好像是书的目录，可以直接通过索引查找到我们想要的数据 二 索引的利弊好处：   通过索引">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-01T19:26:36.000Z">
+<meta property="article:modified_time" content="2020-03-01T13:49:19.538Z">
 <meta property="article:author" content="郭俊旺">
 <meta name="twitter:card" content="summary">
   
@@ -188,85 +192,218 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-MySQL索引" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/Blog/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Blog/2020/03/01/MySQL%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92/" class="archive-article-date">
-        <time datetime="2020-03-01T19:26:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-01</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Blog/2020/03/01/MySQL%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92/" target="_blank">MySQL执行计划</a>
   
+    <h1 class="article-title" itemprop="name">
+      MySQL索引
     </h1>
   
 
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/Blog/categories/数据库//" class="article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 <a href="/Blog/2020/03/01/MySQL%E7%B4%A2%E5%BC%95/" class="archive-article-date">
         <time datetime="2020-03-01T19:26:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-01</time>
 </a>
 
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">1.5k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">5分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="一-什么是索引？为什么要建立索引？"><a href="#一-什么是索引？为什么要建立索引？" class="headerlink" title="一 什么是索引？为什么要建立索引？"></a>一 什么是索引？为什么要建立索引？</h2><p>索引用于快速找出某个列中有特定值的行，如果不使用索引 再查询时 MySQL 或对表内的所有数据进行遍历和筛选,表越大 查询数据所花费的时间也越大，如果表中查询的列有一个索引，MySQL能够快速到达一个位置去搜索数据文件，而不必查看所有数据，那么将会节省很大一部分时间。</p>
+<p>索引就好像是书的目录，可以直接通过索引查找到我们想要的数据</p>
+<h1 id="二-索引的利弊"><a href="#二-索引的利弊" class="headerlink" title="二 索引的利弊"></a>二 索引的利弊</h1><p><strong>好处</strong>： </p>
+<ul>
+<li>通过索引 可以提高查询速度</li>
+<li>索引可以提高 排序的速度</li>
+</ul>
+<p><strong>坏处:</strong></p>
+<ul>
+<li><p>索引也是数据结构，需要耗费磁盘空间</p>
+</li>
+<li><p>索引需要维护 虽然提高了查询效率  但是当对表中的数据进行增加、删除、修改时，索引也需要动态的维护，降低了数据的维护速度</p>
+</li>
+</ul>
+<p>通过上面说的优点和缺点，我们应该可以知道，并不是每个字段度设置索引就好，也不是索引越多越好，而是需要自己合理的使用。</p>
+<ul>
+<li>对经常更新的表 不适合建立索引，对经常用于条件查询的字段应该创建索引</li>
+<li>数据量小的表最好不要使用索引，因为由于数据较少，可能查询全部数据花费的时间比遍历索引的时间还要短，索引就可能不会产生优化效果。</li>
+<li>存在大量重复数据的列上不要建立索引，比如在学生表的”性别”字段上只有男，女两个不同值。相反的，在一个字段上不同值较多可以建立索引。</li>
+</ul>
+<h1 id="三、索引的分类"><a href="#三、索引的分类" class="headerlink" title="三、索引的分类"></a>三、索引的分类</h1><p>MySQL中索引有两种实现 <strong>BTree索引</strong>和 <strong>Hash索引</strong>   MyISAM和InnoDB存储引擎：只支持BTREE索引，MEMORY/HEAP存储引擎：支持HASH和BTREE索引</p>
+<p>索引分为 :  普通索引，复合索引(多列)， 主键索引 ，唯一索引，全文索引</p>
+<h2 id="普通索引"><a href="#普通索引" class="headerlink" title="普通索引"></a>普通索引</h2><p>这是最基本的索引，它没有任何限制。它有以下几种创建方式：</p>
+<p>（1）直接创建索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE INDEX index_name ON table(column(length))</span><br></pre></td></tr></table></figure>
+
+<p>（2）修改表结构的方式添加索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE table_name ADD INDEX index_name ON (column(length))</span><br></pre></td></tr></table></figure>
+
+<p>（3）创建表的时候同时创建索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE &#96;table&#96; (</span><br><span class="line">    &#96;id&#96; int(11) NOT NULL AUTO_INCREMENT ,</span><br><span class="line">    &#96;title&#96; char(255) CHARACTER NOT NULL ,</span><br><span class="line">    &#96;content&#96; text CHARACTER NULL ,</span><br><span class="line">    &#96;time&#96; int(10) NULL DEFAULT NULL ,</span><br><span class="line">    PRIMARY KEY (&#96;id&#96;),</span><br><span class="line">    INDEX index_name (title(length))</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h2 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h2><p>与前面的普通索引类似，不同的就是：索引列的值必须唯一，但允许有空值。如果是组合索引，则列值的组合必须唯一。它有以下几种创建方式：</p>
+<p>（1）创建唯一索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE UNIQUE INDEX indexName ON table(column(length))</span><br></pre></td></tr></table></figure>
+
+<p>（2）修改表结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE table_name ADD UNIQUE indexName ON (column(length))</span><br></pre></td></tr></table></figure>
+
+<p>（3）创建表的时候直接指定</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE &#96;table&#96; (</span><br><span class="line">    &#96;id&#96; int(11) NOT NULL AUTO_INCREMENT ,</span><br><span class="line">    &#96;title&#96; char(255) CHARACTER NOT NULL ,</span><br><span class="line">    &#96;content&#96; text CHARACTER NULL ,</span><br><span class="line">    &#96;time&#96; int(10) NULL DEFAULT NULL ,</span><br><span class="line">    UNIQUE indexName (title(length))</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="主键索引"><a href="#主键索引" class="headerlink" title="主键索引"></a>主键索引</h2><p>是一种特殊的唯一索引，一个表只能有一个主键，不允许有空值。一般是在建表的时候同时创建主键索引：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE &#96;table&#96; (</span><br><span class="line">    &#96;id&#96; int(11) NOT NULL AUTO_INCREMENT ,</span><br><span class="line">    &#96;title&#96; char(255) NOT NULL ,</span><br><span class="line">    PRIMARY KEY (&#96;id&#96;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>　通过 alter语句创建</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter table &#96;table&#96; add primary key(id)</span><br></pre></td></tr></table></figure>
+
+<h2 id="复合索引"><a href="#复合索引" class="headerlink" title="复合索引"></a>复合索引</h2><p>指多个字段上创建的索引，只有在查询条件中使用了创建索引时的第一个字段，索引才会被使用。使用组合索引时遵循最左前缀集合</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE &#96;table&#96; ADD INDEX name_city_age (name,city,age);</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="全文索引"><a href="#全文索引" class="headerlink" title="全文索引"></a>全文索引</h2><p>主要用来查找文本中的关键字，而不是直接与索引中的值相比较。fulltext索引跟其它索引大不相同，它更像是一个搜索引擎，而不是简单的where语句的参数匹配。fulltext索引配合match against操作使用，而不是一般的where语句加like。它可以在create table，alter table ，create index使用，不过目前只有char、varchar，text 列上可以创建全文索引。值得一提的是，在数据量较大时候，现将数据放入一个没有全局索引的表中，然后再用CREATE index创建fulltext索引，要比先为一张表建立fulltext然后再将数据写入的速度快很多。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE &#96;table&#96; (</span><br><span class="line">    &#96;id&#96; int(11) NOT NULL AUTO_INCREMENT ,</span><br><span class="line">    &#96;title&#96; char(255) CHARACTER NOT NULL ,</span><br><span class="line">    &#96;content&#96; text CHARACTER NULL ,</span><br><span class="line">    &#96;time&#96; int(10) NULL DEFAULT NULL ,</span><br><span class="line">    PRIMARY KEY (&#96;id&#96;),</span><br><span class="line">    FULLTEXT (content)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="四-避免索引失效"><a href="#四-避免索引失效" class="headerlink" title="四 避免索引失效"></a>四 避免索引失效</h1><p>如果操作不当会使索引失效</p>
+<ol>
+<li><p>使用复合索引时 应按索引的顺序查询 如 复合索引 idx(name,age,addr) 在查询时应先按照name查询再按照age查询然后按照addr查询 如果不按照顺序会时符合索引失效(并不是全部失效)、</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select * from tb where name &#x3D; &#39;zs&#39; and age &#x3D; 13 and addr &#x3D; &#39;北京&#39; -- 复合索引全部用到</span><br><span class="line">select * from tb where name &#x3D; &#39;zs&#39; and addr &#x3D; &#39;北京&#39; and age &#x3D; 13 -- 只使用到了name</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p>不能对索引进行任何操作(计算，函数，手动或自动类型转换)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select * from tb where age+1 &#x3D; 10  		-- 索引失效</span><br><span class="line">select * from tb where name &#x3D; 1  		-- name为varchar类型时索引失效</span><br><span class="line">select * from tb where trim(name) &#x3D;&#39;a&#39;	-- 索引失效</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="3">
+<li><p>进行 != ,&lt;&gt;, like ‘%xx’, is null , is not null ,or 时索引会失效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select * from tb where id !&#x3D;1   			-- 索引失效</span><br><span class="line">select * from tb where id &lt;&gt; 1				-- 索引失效</span><br><span class="line">select * from tb where name like &#39;%aa&#39;		-- 索引失效 like前面使用%</span><br><span class="line">select * from tb where id is null			-- 索引失效</span><br><span class="line">select * from tb where id &#x3D; 1 or name &#x3D; &#39;zs&#39;-- 索引失效</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</li>
+</ol>
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/Blog/img/head.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/Blog/img/head.jpg">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Blog/2020/03/01/MySQL%E7%B4%A2%E5%BC%95/" target="_blank">MySQL索引</a>
-  
-    </h1>
-  
+      </a>
+    </div>
+    
 
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          郭俊旺
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https:/1994371810.github.io/Blog/2020/03/01/MySQL索引/" title="MySQL索引" target="_blank">https:/1994371810.github.io/Blog/2020/03/01/MySQL索引/</a>
+        </li>
+        
+      </ul>
+    </div>
+    
 
-        <div class="article-info info-on-right">
-          
-          
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -279,92 +416,114 @@
 	</div>
 
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://1994371810.github.io/2020/03/01/MySQL%E7%B4%A2%E5%BC%95/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Blog/2020/03/01/hello-world/" class="archive-article-date">
-        <time datetime="2020-03-01T13:49:19.538Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-01</time>
-</a>
 
+
+<nav id="article-nav">
+  
+    <a href="/Blog/2020/03/01/MySQL%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          MySQL执行计划
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Blog/2020/03/01/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Blog/2020/03/01/hello-world/" target="_blank">Hello World</a>
-  
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/Blog/2020/02/26/HashMap%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" class="archive-article-date">
-        <time datetime="2020-02-26T09:55:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-26</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/Blog/2020/02/26/HashMap%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" target="_blank">HashMap的实现原理</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/Blog/categories/java//" class="article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+
+
+
+
+
 
 
           </div>
@@ -405,8 +564,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
