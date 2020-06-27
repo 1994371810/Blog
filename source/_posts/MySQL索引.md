@@ -52,7 +52,7 @@ MySQL中索引有两种实现 **BTree索引**和 **Hash索引**   MyISAM和InnoD
 CREATE INDEX index_name ON table(column(length))  
 ```
 
-（2）修改表结构的方式添加索引
+（2）修改表结构的方式添加索引 
 
 ```
 ALTER TABLE table_name ADD INDEX index_name ON (column(length))
