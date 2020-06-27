@@ -21,8 +21,9 @@ jobs:
 
     - name: Deplou
       uses: peaceiris/actions-gh-pages@v2
+        #${{ secrets.ACCESS_TOKEN }}
       env:
-        PERSONAL_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        PERSONAL_TOKEN: 5a6abe315b0dec4bac276d46a61b3c7cdc219349
         PUBLISH_BRANCH: gh-pages
         PUBLISH_DIR: ./public
 
