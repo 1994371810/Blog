@@ -1,7 +1,7 @@
 ---
 title: SpringBoot整合Shrio
 date: 2020-06-27 21:13:00
-categories:
+categories: 
 - 项目
 ---
 
@@ -13,7 +13,7 @@ categories:
 
 # 1.导入依赖,编写工具类
 
-## Mavne 依赖
+## Mavne 依赖 
 
 ```xml
 <!-- 前后端分离 采用 jwt生成token-->
